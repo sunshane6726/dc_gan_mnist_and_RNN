@@ -19,7 +19,7 @@ from sklearn.metrics import mean_squared_error
 
 # hyper-parameter
 
-MY_EPOCH = 500
+MY_EPOCH = 100
 MY_BATCH = 32 # 한번에 가지고 오는 데이터 수
 
                 ####################
@@ -71,10 +71,10 @@ z = pd.DataFrame(z, columns=heading)
 #plt.show()
 
 # X/Y로 나눔
-X = z.drop('medv', axis =1)
+X = z.drop('medv', axis =1) # 14가지요소 다양하게 예측 age, rm, medv
 print(X.shape)
 
-Y= z['medv']
+Y= z['age'] # ""
 print(Y.shape)
 
 # 학급용/평가용
@@ -86,21 +86,23 @@ X_train, X_test, Y_train, Y_test= train_test_split(X, Y, test_size=0.3, random_s
 ###############################
 
 model = Sequential()
-model.add(Dense(200, input_dim=13, activation='relu'))# bias 안넣음 # Dense 4개 13가지 특징= headings, # 시냅스 200개
+model.add(Dense(200, input_dim= 13 , activation='relu'))# bias 안넣음 # Dense 4개 13가지 특징= headings, # 시냅스 200개
 model.add(Dense(1000, activation='relu')) # Dense 시냅스 1000개 활성화 함수 relu
+#model.add(Dense(500, activation= 'relu'))
 model.add(Dense(1, activation='linear')) # output 1개
 model.summary()
 
 #DNN 학습
 
 model.compile(optimizer='adam', loss='mse', metrics=['accuracy'])# 최적화 Adam, sge, loss = mse
+model.save('chap2.h5')
 # mertrics 인자 뭐였지 ?
 
 # 학습용 데이터 사용
 
 from time import time
 begin = time()
-model.fit(X_train, Y_train, epochs= MY_EPOCH, batch_size=MY_BATCH, verbose=0) #verbose 보여주는것 얼마큼 trainning 되는 지를
+model.fit(X_train, Y_train, epochs= MY_EPOCH, batch_size=MY_BATCH, verbose=1) #verbose 보여주는것 얼마큼 trainning 되는 지를
 total = time() - begin
 print('time = ', total)
 # trainning rate 시간 보여줌 learnning rate는 원래 model.summary에서 보여준다.
@@ -137,7 +139,7 @@ plt.xlabel("Actual values")
 plt.ylabel("Predicted values")
 plt.title("Linear Regression Model")
 
-plt.show()
+#plt.show()
 
 # calculate mean square error of linear regression model
 
