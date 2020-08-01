@@ -15,6 +15,7 @@ from keras.layers import Dense
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
 
 # hyper-parameter
 
@@ -111,7 +112,7 @@ loss, acc = model.evaluate(X_test, Y_test, verbose= 1)
 print('\nMSE of DNN model', loss)
 print('Model accuracy', acc)
 
-# comparison with linear regression 선형회귀 시스템과 비교
+# comparison with linear regression 선형회귀 시스템과 비교 -> 훨씬 Keras DNN이 잘나왔다는 것을 figure 통해 확인
 
 from sklearn.linear_model import LinearRegression
 model2 = LinearRegression()
@@ -137,6 +138,11 @@ plt.ylabel("Predicted values")
 plt.title("Linear Regression Model")
 
 plt.show()
+
+# calculate mean square error of linear regression model
+
+mse = mean_squared_error(Y_test, Y_model2)
+print('\nMSE of linear regression model', mse) # 0.22정도 차이가 난다. DNN보다
 
 
 
