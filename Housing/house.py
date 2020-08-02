@@ -80,7 +80,7 @@ print(Y.shape)
 # 학급용/평가용
 
 X_train, X_test, Y_train, Y_test= train_test_split(X, Y, test_size=0.3, random_state= 5) # random_state = 5는 왜 사용하는 건지 모르겠다.
-
+# shuffle, stratify -> 각각의 평가할때에도  class 비율을 train/test를 유지하여 (한쪽에 쏠려서 분배되는 것을 방지
 ###############################
 # DNN 구현
 ###############################
@@ -96,7 +96,7 @@ model.summary()
 
 model.compile(optimizer='adam', loss='mse', metrics=['accuracy'])# 최적화 Adam, sge, loss = mse
 model.save('chap2.h5')
-# mertrics 인자 뭐였지 ?
+# mertrics 인자
 
 # 학습용 데이터 사용
 

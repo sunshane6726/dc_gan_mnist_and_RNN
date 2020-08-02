@@ -15,9 +15,9 @@ from keras.layers.convolutional import Conv2D, Conv2DTranspose, UpSampling2D
 from keras.models import Sequential
 
 # 하이퍼 파라미터
-MY_EPOCH = 100
+MY_EPOCH = 10
 MY_BATCH = 10
-MY_NOISE = 100  # 생성자가 사용하는 입력값
+MY_NOISE = 10  # 생성자가 사용하는 입력값
 MY_SHAPE = (28, 28, 1)
 
 # 출력 이미지를 저장하는 폴더 생성
@@ -25,8 +25,17 @@ MY_OUTPUT = 'output'
 if not os.path.exists(MY_OUTPUT): # 전역변수로 파이썬이 설정되어있어서 os.path 경로 되어있다.
     os.makedirs(MY_OUTPUT)
 ### 3. LOAD AND MANIPULATE DATASET (MNIST 데이터 가져오기
+
+
 def read_dataset():
-    (X_train, _), (_, _) = fashion_mnist.load_data()
+    (X_train, _), (_, _) = fashion_mnist.load_data() # -> cifar10 색깔영상을 흑백으로 줄여서 차원을 낮춰야한다.
+
+    #def rgb2gray(X_train)
+    #    r, g, b = X_train[:, :, :, 0], X_train[:, :, :, 1], X_train[:, :, :, 2]
+    #    gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
+
+    #return X_train
+
 
     print(X_train.shape)
     #print(X_train[0])

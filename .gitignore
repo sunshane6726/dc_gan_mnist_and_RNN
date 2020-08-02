@@ -27,6 +27,8 @@ __pycache__/
 hello_evlu/
 movie/.idea/*
 dc-gan/output/
+Housing/chap2.h5
+h
 # =============================
 # Sensitive or high-churn files
 .idea/**/dataSources/
