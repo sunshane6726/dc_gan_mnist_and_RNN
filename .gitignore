@@ -28,7 +28,7 @@ hello_evlu/
 movie/.idea/*
 dc-gan/output/
 Housing/chap2.h5
-h
+airline/chap_airplane.h5
 # =============================
 # Sensitive or high-churn files
 .idea/**/dataSources/
